@@ -1,14 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { LoginForm } from "@/components/LoginForm";
+import Departments from "./Departments";
+
+interface User {
+  name: string;
+  username: string;
+}
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
+  const [user, setUser] = useState<User | null>(null);
+
+  const handleLogin = (credentials: { username: string; password: string }) => {
+    // In a real app, you would validate credentials with an API
+    // For demo purposes, we'll accept any credentials
+    setUser({
+      name: "Tamil User",
+      username: credentials.username
+    });
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  if (user) {
+    return <Departments user={user} onLogout={handleLogout} />;
+  }
+
+  return <LoginForm onLogin={handleLogin} />;
 };
 
 export default Index;
