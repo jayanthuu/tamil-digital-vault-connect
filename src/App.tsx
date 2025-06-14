@@ -8,6 +8,10 @@ import DocumentAccess from "./pages/DocumentAccess";
 import Services from "./pages/Services";
 import TrackProgress from "./pages/TrackProgress";
 import NotFound from "./pages/NotFound";
+import DepartmentDashboard from "./pages/DepartmentDashboard";
+import RequestDetails from "./pages/RequestDetails";
+import ApprovalTracking from "./pages/ApprovalTracking";
+import DocumentGeneration from "./pages/DocumentGeneration";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +26,13 @@ const App = () => (
           <Route path="/documents/:departmentId" element={<DocumentAccess />} />
           <Route path="/services/:departmentId" element={<Services />} />
           <Route path="/track-progress" element={<TrackProgress />} />
+          
+          {/* Department Routes */}
+          <Route path="/department" element={<DepartmentDashboard />} />
+          <Route path="/department/request/:requestId" element={<RequestDetails />} />
+          <Route path="/department/approval-tracking" element={<ApprovalTracking />} />
+          <Route path="/department/generate/:requestId" element={<DocumentGeneration />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
