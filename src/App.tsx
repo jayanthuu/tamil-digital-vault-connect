@@ -3,7 +3,11 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+import Welcome from "./pages/Welcome";
+import Login from "./pages/Login";
+import UserRegistration from "./pages/UserRegistration";
+import DepartmentRegistration from "./pages/DepartmentRegistration";
+import ProtectedDepartments from "./pages/ProtectedDepartments";
 import DocumentAccess from "./pages/DocumentAccess";
 import Services from "./pages/Services";
 import TrackProgress from "./pages/TrackProgress";
@@ -22,13 +26,17 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<UserRegistration />} />
+          <Route path="/departments" element={<ProtectedDepartments />} />
           <Route path="/documents/:departmentId" element={<DocumentAccess />} />
           <Route path="/services/:departmentId" element={<Services />} />
           <Route path="/track-progress" element={<TrackProgress />} />
           
           {/* Department Routes */}
           <Route path="/department" element={<DepartmentDashboard />} />
+          <Route path="/department/register" element={<DepartmentRegistration />} />
           <Route path="/department/request/:requestId" element={<RequestDetails />} />
           <Route path="/department/approval-tracking" element={<ApprovalTracking />} />
           <Route path="/department/generate/:requestId" element={<DocumentGeneration />} />

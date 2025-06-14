@@ -9,12 +9,13 @@ import { useToast } from "@/hooks/use-toast";
 
 interface LoginFormProps {
   onLogin: (credentials: { username: string; password: string; userType: 'user' | 'department' }) => void;
+  initialUserType?: 'user' | 'department';
 }
 
-export function LoginForm({ onLogin }: LoginFormProps) {
+export function LoginForm({ onLogin, initialUserType = 'user' }: LoginFormProps) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState<'user' | 'department'>('user');
+  const [userType, setUserType] = useState<'user' | 'department'>(initialUserType);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
