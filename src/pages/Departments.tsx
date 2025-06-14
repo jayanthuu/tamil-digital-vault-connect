@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -36,84 +37,63 @@ const departments = [
     description: "Land records, survey settlements, and revenue collection",
     icon: Building,
     documentCount: 15,
-    category: "Essential",
+    category: "Revenue Department",
     isActive: true
   },
   {
     id: 2,
-    title: "Transport Department",
-    titleTamil: "போக்குவரத்து துறை",
-    description: "Driving license, vehicle registration, and transport permits",
-    icon: Car,
-    documentCount: 12,
-    category: "Essential",
-    isActive: true
-  },
-  {
-    id: 3,
     title: "Education Department",
     titleTamil: "கல்வித் துறை",
     description: "Educational certificates, transcripts, and academic records",
     icon: GraduationCap,
     documentCount: 8,
-    category: "Academic",
+    category: "Education",
+    isActive: true
+  },
+  {
+    id: 3,
+    title: "Sports Department",
+    titleTamil: "விளையாட்டுத் துறை",
+    description: "Sports certificates, athlete registration, and sports facility permits",
+    icon: Heart,
+    documentCount: 6,
+    category: "Sports Department",
     isActive: true
   },
   {
     id: 4,
-    title: "Health Department",
+    title: "Healthcare Department",
     titleTamil: "சுகாதாரத் துறை",
     description: "Medical certificates, health records, and vaccination certificates",
     icon: Heart,
-    documentCount: 6,
+    documentCount: 10,
     category: "Healthcare",
     isActive: true
   },
   {
     id: 5,
-    title: "Municipal Administration",
-    titleTamil: "நகராட்சி நிர்வாகம்",
-    description: "Birth certificates, death certificates, and municipal records",
-    icon: Home,
-    documentCount: 10,
-    category: "Civil",
-    isActive: true
-  },
-  {
-    id: 6,
-    title: "Police Department",
-    titleTamil: "காவல் துறை",
+    title: "TN Police Department",
+    titleTamil: "தமிழ்நாடு காவல் துறை",
     description: "Police clearance, NOC, and verification certificates",
     icon: Shield,
     documentCount: 5,
-    category: "Security",
-    isActive: false
-  },
-  {
-    id: 7,
-    title: "Forest Department",
-    titleTamil: "வன துறை",
-    description: "Forest clearance, wildlife permits, and environmental certificates",
-    icon: TreePine,
-    documentCount: 4,
-    category: "Environment",
-    isActive: false
-  },
-  {
-    id: 8,
-    title: "Labour Department",
-    titleTamil: "தொழிலாளர் துறை",
-    description: "Employment certificates, labor permits, and welfare schemes",
-    icon: Briefcase,
-    documentCount: 7,
-    category: "Employment",
-    isActive: false
+    category: "TN Police Department",
+    isActive: true
   }
 ];
 
 export default function Departments({ user, onLogout }: DepartmentsProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleAccessDocuments = (departmentId: number) => {
+    navigate(`/documents/${departmentId}`);
+  };
+
+  const handleApply = (departmentId: number) => {
+    navigate(`/services/${departmentId}`);
+  };
 
   const categories = Array.from(new Set(departments.map(dept => dept.category)));
 
@@ -237,6 +217,9 @@ export default function Departments({ user, onLogout }: DepartmentsProps) {
               documentCount={department.documentCount}
               category={department.category}
               isActive={department.isActive}
+              departmentId={department.id}
+              onAccessDocuments={handleAccessDocuments}
+              onApply={handleApply}
             />
           ))}
         </div>

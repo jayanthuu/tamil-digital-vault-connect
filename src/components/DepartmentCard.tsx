@@ -11,6 +11,9 @@ interface DepartmentCardProps {
   documentCount: number;
   category: string;
   isActive: boolean;
+  departmentId: number;
+  onAccessDocuments: (departmentId: number) => void;
+  onApply: (departmentId: number) => void;
 }
 
 export function DepartmentCard({
@@ -20,7 +23,10 @@ export function DepartmentCard({
   icon: Icon,
   documentCount,
   category,
-  isActive
+  isActive,
+  departmentId,
+  onAccessDocuments,
+  onApply
 }: DepartmentCardProps) {
   return (
     <Card className="h-full hover:shadow-lg transition-shadow duration-200 hover:scale-105 transform">
@@ -48,13 +54,25 @@ export function DepartmentCard({
           </Badge>
         </div>
         
-        <Button 
-          className="w-full" 
-          variant={isActive ? "default" : "outline"}
-          disabled={!isActive}
-        >
-          {isActive ? "Access Documents" : "Coming Soon"}
-        </Button>
+        <div className="space-y-2">
+          <Button 
+            className="w-full" 
+            variant="default"
+            disabled={!isActive}
+            onClick={() => onAccessDocuments(departmentId)}
+          >
+            Access Documents
+          </Button>
+          
+          <Button 
+            className="w-full" 
+            variant="outline"
+            disabled={!isActive}
+            onClick={() => onApply(departmentId)}
+          >
+            Apply
+          </Button>
+        </div>
         
         {!isActive && (
           <p className="text-xs text-muted-foreground">
