@@ -53,7 +53,6 @@ export function LoginForm({ onLogin, initialUserType = 'user' }: LoginFormProps)
               <Shield className="h-8 w-8 text-primary-foreground" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-foreground">தமிழ் ஆவண அணுகல்</h1>
           <p className="text-lg text-muted-foreground mt-2">Tamil Document Access System</p>
           <p className="text-sm text-muted-foreground mt-1">Government of Tamil Nadu</p>
         </div>
