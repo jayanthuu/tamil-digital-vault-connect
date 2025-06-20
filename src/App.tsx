@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,9 +18,8 @@ import DepartmentDashboard from "./pages/DepartmentDashboard";
 import RequestDetails from "./pages/RequestDetails";
 import ApprovalTracking from "./pages/ApprovalTracking";
 import DocumentGeneration from "./pages/DocumentGeneration";
-
-// ✅ Import the new certificate page
 import GenerateCertificate from "./pages/GenerateCertificate";
+import ArchitectureDiagramPage from "./pages/ArchitectureDiagram";
 
 const queryClient = new QueryClient();
 
@@ -45,8 +45,9 @@ const App = () => (
           <Route path="/department/approval-tracking" element={<ApprovalTracking />} />
           <Route path="/department/generate/:requestId" element={<DocumentGeneration />} />
 
-          {/* ✅ New Certificate Route */}
+          {/* Certificate and Architecture Routes */}
           <Route path="/generate-certificate" element={<GenerateCertificate />} />
+          <Route path="/architecture" element={<ArchitectureDiagramPage />} />
 
           {/* Catch-all Route */}
           <Route path="*" element={<NotFound />} />
